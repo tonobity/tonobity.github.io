@@ -1,3 +1,1 @@
-# Tonobity app-ads.txt
-# Replace the line below with the exact line from AdMob > Apps > app-ads.txt once the AdMob account exists.
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-5124869798020266, DIRECT, f08c47fec0942fa0
