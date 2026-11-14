@@ -4,7 +4,7 @@
     "title": "Block Jam",
     "tagline": "Slide every block out through its colour gap.",
     "icon": "block-jam/icon.png",
-    "playStore": "https://play.google.com/store/apps/details?id=com.rjscode.blockjam",
+    "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.blockjam",
     "demo": "block-jam/play/",
     "visible": false
   },
@@ -13,7 +13,7 @@
     "title": "Hex Fit",
     "tagline": "Fill the lines. Match the colours.",
     "icon": "hex-fit/icon.png",
-    "playStore": "https://play.google.com/store/apps/details?id=com.rjscode.hexfit",
+    "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.hexfit",
     "demo": "hex-fit/play/",
     "visible": false
   },
@@ -22,7 +22,7 @@
     "title": "Noodle Stall",
     "tagline": "Cook. Serve. Grow your stall.",
     "icon": "noodle-stall/icon.png",
-    "playStore": "https://play.google.com/store/apps/details?id=com.rjscode.idleshop",
+    "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.idleshop",
     "demo": "noodle-stall/play/",
     "visible": false
   }
