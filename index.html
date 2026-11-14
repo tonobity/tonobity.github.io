@@ -2,17 +2,42 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tonobity</title>
 <style>
-:root{--bg:#fff;--fg:#1b1e2b;--dim:#555b73;--link:#1a5fd0}
-@media (prefers-color-scheme:dark){:root{--bg:#14161f;--fg:#eceef8;--dim:#a4aac4;--link:#7fb3ff}}
+:root{--bg:#fff;--fg:#1b1e2b;--dim:#555b73;--link:#1a5fd0;--card:#f5f6fb;--line:#dfe2ee;--btn:#1a5fd0;--btnfg:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#14161f;--fg:#eceef8;--dim:#a4aac4;--link:#7fb3ff;--card:#1b1e2c;--line:#2b3046;--btn:#4da3ff;--btnfg:#0b1020}}
+*{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-main{max-width:640px;margin:0 auto;padding:48px 20px}h1{margin:0 0 4px}p{color:var(--dim)}a{color:var(--link)}li{margin:.3rem 0}
+main{max-width:720px;margin:0 auto;padding:48px 16px}
+h1{margin:0 0 4px}.sub{color:var(--dim);margin:0 0 28px}a{color:var(--link)}
+.games{display:grid;gap:14px}
+.game{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.game img{width:72px;height:72px;border-radius:16px;flex:none}
+.game h2{margin:0;font-size:1.15rem}.game p{margin:2px 0 10px;color:var(--dim)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;padding:7px 14px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.9rem;background:var(--btn);color:var(--btnfg)}
+.btn.ghost{background:transparent;color:var(--link);border:1px solid var(--line)}
+.soon{color:var(--dim);background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:18px;text-align:center}
+footer{margin-top:40px;color:var(--dim);font-size:.9rem}
 </style></head><body><main>
 <h1>Tonobity</h1>
-<p>Small, calm mobile games.</p>
-<ul>
-<li>Block Jam: sliding block puzzle</li>
-<li>Hex Fit: hex block placement puzzle</li>
-<li>Noodle Stall: idle cooking stall</li>
-</ul>
-<p><a href="privacy/">Privacy Policy</a></p>
-</main></body></html>
+<p class="sub">Small, calm mobile games.</p>
+<div class="games" id="games"><div class="soon">Games coming soon.</div></div>
+<footer><a href="privacy/">Privacy Policy</a></footer>
+</main>
+<script>
+// Games are listed in games.json; only entries with "visible": true are shown.
+fetch('games.json').then((r) => r.json()).then((games) => {
+  const shown = games.filter((g) => g.visible);
+  if (!shown.length) return;
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  document.getElementById('games').innerHTML = shown.map((g) => `
+    <article class="game">
+      <img src="${esc(g.icon)}" alt="">
+      <div><h2>${esc(g.title)}</h2><p>${esc(g.tagline)}</p>
+        <div class="btns">
+          ${g.playStore ? `<a class="btn" href="${esc(g.playStore)}">Get it on Google Play</a>` : ''}
+          ${g.demo ? `<a class="btn ghost" href="${esc(g.demo)}">Play in browser</a>` : ''}
+        </div></div>
+    </article>`).join('');
+}).catch(() => {});
+</script>
+</body></html>

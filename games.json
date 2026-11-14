@@ -1,0 +1,29 @@
+[
+  {
+    "id": "block-jam",
+    "title": "Block Jam",
+    "tagline": "Slide every block out through its colour gap.",
+    "icon": "block-jam/icon.png",
+    "playStore": "https://play.google.com/store/apps/details?id=com.rjscode.blockjam",
+    "demo": "block-jam/play/",
+    "visible": false
+  },
+  {
+    "id": "hex-fit",
+    "title": "Hex Fit",
+    "tagline": "Fill the lines. Match the colours.",
+    "icon": "hex-fit/icon.png",
+    "playStore": "https://play.google.com/store/apps/details?id=com.rjscode.hexfit",
+    "demo": "hex-fit/play/",
+    "visible": false
+  },
+  {
+    "id": "noodle-stall",
+    "title": "Noodle Stall",
+    "tagline": "Cook. Serve. Grow your stall.",
+    "icon": "noodle-stall/icon.png",
+    "playStore": "https://play.google.com/store/apps/details?id=com.rjscode.idleshop",
+    "demo": "noodle-stall/play/",
+    "visible": false
+  }
+]
