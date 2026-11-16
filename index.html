@@ -24,7 +24,7 @@ footer{margin-top:40px;color:var(--dim);font-size:.9rem}
 <footer><a href="privacy/">Privacy Policy</a></footer>
 </main>
 <script>
-// Public: games.json, only entries with "visible": true (= released on Google Play).
+// Public: games.json, only entries with "visible": true. Play button only when "onPlay": true; "apk" = direct test download.
 // On localhost: local/games.json (all games, built by local-preview.mjs, gitignored) when it exists.
 const LOCAL = /^(localhost|127.0.0.1)$/.test(location.hostname);
 (LOCAL ? fetch('local/games.json').then((r) => (r.ok ? r : fetch('games.json'))) : fetch('games.json')).then((r) => r.json()).then((games) => {
@@ -36,7 +36,8 @@ const LOCAL = /^(localhost|127.0.0.1)$/.test(location.hostname);
       ${g.icon ? `<img src="${esc(g.icon)}" alt="">` : `<span class="noicon"></span>`}
       <div><h2>${esc(g.title)}</h2><p>${esc(g.tagline)}</p>
         <div class="btns">
-          ${g.playStore ? `<a class="btn" href="${esc(g.playStore)}">Get it on Google Play</a>` : ''}
+          ${g.playStore && g.onPlay ? `<a class="btn" href="${esc(g.playStore)}">Get it on Google Play</a>` : ''}
+          ${g.apk ? `<a class="btn${g.onPlay ? ' ghost' : ''}" href="${esc(g.apk)}" download>Download APK</a>` : ''}
           ${g.demo ? `<a class="btn ghost" href="${esc(g.demo)}">Play in browser</a>` : ''}
         </div></div>
     </article>`;

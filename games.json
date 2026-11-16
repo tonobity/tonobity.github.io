@@ -6,7 +6,9 @@
     "icon": "block-jam/icon.png",
     "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.blockjam",
     "demo": "block-jam/play/",
-    "visible": false
+    "visible": true,
+    "apk": "block-jam/Sliderloo.apk",
+    "onPlay": false
   },
   {
     "id": "hex-fit",
@@ -15,7 +17,8 @@
     "icon": "hex-fit/icon.png",
     "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.hexfit",
     "demo": "hex-fit/play/",
-    "visible": false
+    "visible": false,
+    "onPlay": false
   },
   {
     "id": "noodle-stall",
@@ -24,6 +27,7 @@
     "icon": "noodle-stall/icon.png",
     "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.idleshop",
     "demo": "noodle-stall/play/",
-    "visible": false
+    "visible": false,
+    "onPlay": false
   }
 ]
