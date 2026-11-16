@@ -11,18 +11,19 @@ const games = JSON.parse(readFileSync('games.json', 'utf8'));
 const g = games.find((x) => x.id === id);
 if (!g) { console.error(`unknown game "${id}". Known: ${games.map((x) => x.id).join(', ')}`); process.exit(1); }
 
+const dir = g?.dir ?? id; // site folder (public URL), may differ from the repo id (block-jam -> sliderloo)
 if (flag === '--hide') {
-  rmSync(id, { recursive: true, force: true });
+  rmSync(dir, { recursive: true, force: true });
   g.visible = false;
 } else {
   const repo = resolve('..', id);
   if (!existsSync(repo)) { console.error(`clone ${id} next to this repo first: ${repo}`); process.exit(1); }
   const key = readdirSync(join(repo, 'src/games'))[0];
   execSync(`node scripts/build-web.mjs ${key}`, { cwd: repo, stdio: 'inherit' });
-  rmSync(id, { recursive: true, force: true });
-  mkdirSync(join(id, 'play'), { recursive: true });
-  cpSync(join(repo, 'dist-mobile', key), join(id, 'play'), { recursive: true });
-  cpSync(join(repo, 'store', key, 'icon-512.png'), join(id, 'icon.png'));
+  rmSync(dir, { recursive: true, force: true });
+  mkdirSync(join(dir, 'play'), { recursive: true });
+  cpSync(join(repo, 'dist-mobile', key), join(dir, 'play'), { recursive: true });
+  cpSync(join(repo, 'store', key, 'icon-512.png'), join(dir, 'icon.png'));
   g.visible = true;
 }
 writeFileSync('games.json', JSON.stringify(games, null, 2) + '\n');

@@ -3,12 +3,13 @@
     "id": "block-jam",
     "title": "Sliderloo",
     "tagline": "Slide every block out through its colour gap.",
-    "icon": "block-jam/icon.png",
+    "icon": "sliderloo/icon.png",
     "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.blockjam",
-    "demo": "block-jam/play/",
+    "demo": "sliderloo/play/",
     "visible": true,
-    "apk": "block-jam/Sliderloo.apk",
-    "onPlay": false
+    "apk": "sliderloo/Sliderloo.apk",
+    "onPlay": false,
+    "dir": "sliderloo"
   },
   {
     "id": "hex-fit",
