@@ -27,7 +27,7 @@ footer{margin-top:40px;color:var(--dim);font-size:.9rem}
 // Public: games.json, only entries with "visible": true. Play button only when "onPlay": true; "apk" = direct test download.
 // On localhost: local/games.json (all games, built by local-preview.mjs, gitignored) when it exists.
 const LOCAL = /^(localhost|127.0.0.1)$/.test(location.hostname);
-(LOCAL ? fetch('local/games.json').then((r) => (r.ok ? r : fetch('games.json'))) : fetch('games.json')).then((r) => r.json()).then((games) => {
+(LOCAL ? fetch('local/games.json').then((r) => (r.ok ? r : fetch('games.json'))) : fetch('games.json', { cache: 'no-store' })).then((r) => r.json()).then((games) => {
   const shown = games.filter((g) => g.visible);
   if (!shown.length) return;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
