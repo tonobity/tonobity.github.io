@@ -7,7 +7,7 @@
     "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.blockjam",
     "demo": "sliderloo/play/",
     "visible": true,
-    "apk": "sliderloo/Sliderloo.apk",
+    "apk": "sliderloo/Sliderloo-Demo.apk",
     "onPlay": false,
     "dir": "sliderloo"
   },

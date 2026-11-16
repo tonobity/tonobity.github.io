@@ -19,10 +19,11 @@ if (flag === '--hide') {
   const repo = resolve('..', id);
   if (!existsSync(repo)) { console.error(`clone ${id} next to this repo first: ${repo}`); process.exit(1); }
   const key = readdirSync(join(repo, 'src/games'))[0];
-  execSync(`node scripts/build-web.mjs ${key}`, { cwd: repo, stdio: 'inherit' });
+  // The site only ever hosts the demo build (first packs, full game on Google Play).
+  execSync(`node scripts/build-web.mjs ${key}`, { cwd: repo, stdio: 'inherit', env: { ...process.env, VITE_DEMO: '1' } });
   rmSync(dir, { recursive: true, force: true });
   mkdirSync(join(dir, 'play'), { recursive: true });
-  cpSync(join(repo, 'dist-mobile', key), join(dir, 'play'), { recursive: true });
+  cpSync(join(repo, 'dist-mobile', `${key}-demo`), join(dir, 'play'), { recursive: true });
   cpSync(join(repo, 'store', key, 'icon-512.png'), join(dir, 'icon.png'));
   g.visible = true;
 }

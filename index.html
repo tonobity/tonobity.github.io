@@ -37,8 +37,8 @@ const LOCAL = /^(localhost|127.0.0.1)$/.test(location.hostname);
       <div><h2>${esc(g.title)}</h2><p>${esc(g.tagline)}</p>
         <div class="btns">
           ${g.playStore && g.onPlay ? `<a class="btn" href="${esc(g.playStore)}">Get it on Google Play</a>` : ''}
-          ${g.apk ? `<a class="btn${g.onPlay ? ' ghost' : ''}" href="${esc(g.apk)}" download>Download APK</a>` : ''}
-          ${g.demo ? `<a class="btn ghost" href="${esc(g.demo)}">Play in browser</a>` : ''}
+          ${g.apk ? `<a class="btn${g.onPlay ? ' ghost' : ''}" href="${esc(g.apk)}" download>Download demo APK</a>` : ''}
+          ${g.demo ? `<a class="btn ghost" href="${esc(g.demo)}">Play demo in browser</a>` : ''}
         </div></div>
     </article>`;
   // Optional "group": prio / other (local review only). Without groups: one plain list.
