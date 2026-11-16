@@ -42,6 +42,6 @@
     "demo": "word-lock/play/",
     "apk": "word-lock/WordLock-Demo.apk",
     "onPlay": false,
-    "visible": false
+    "visible": true
   }
 ]
