@@ -11,7 +11,7 @@ h1{margin:0 0 4px}.sub{color:var(--dim);margin:0 0 28px}a{color:var(--link)}
 .games{display:grid;gap:14px}
 .game{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
 .game img{width:72px;height:72px;border-radius:16px;flex:none}
-.game h2{margin:0;font-size:1.15rem}.game p{margin:2px 0 10px;color:var(--dim)}
+.noicon{width:64px;height:64px;border-radius:14px;background:var(--dim);opacity:.25;flex:none}.grp{margin:22px 0 4px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}.game h2{margin:0;font-size:1.15rem}.game p{margin:2px 0 10px;color:var(--dim)}
 .btns{display:flex;gap:8px;flex-wrap:wrap}
 .btn{display:inline-block;padding:7px 14px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.9rem;background:var(--btn);color:var(--btnfg)}
 .btn.ghost{background:transparent;color:var(--link);border:1px solid var(--line)}
@@ -24,20 +24,27 @@ footer{margin-top:40px;color:var(--dim);font-size:.9rem}
 <footer><a href="privacy/">Privacy Policy</a></footer>
 </main>
 <script>
-// Games are listed in games.json; only entries with "visible": true are shown.
-fetch('games.json').then((r) => r.json()).then((games) => {
+// Public: games.json, only entries with "visible": true (= released on Google Play).
+// On localhost: local/games.json (all games, built by local-preview.mjs, gitignored) when it exists.
+const LOCAL = /^(localhost|127.0.0.1)$/.test(location.hostname);
+(LOCAL ? fetch('local/games.json').then((r) => (r.ok ? r : fetch('games.json'))) : fetch('games.json')).then((r) => r.json()).then((games) => {
   const shown = games.filter((g) => g.visible);
   if (!shown.length) return;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  document.getElementById('games').innerHTML = shown.map((g) => `
+  const card = (g) => `
     <article class="game">
-      <img src="${esc(g.icon)}" alt="">
+      ${g.icon ? `<img src="${esc(g.icon)}" alt="">` : `<span class="noicon"></span>`}
       <div><h2>${esc(g.title)}</h2><p>${esc(g.tagline)}</p>
         <div class="btns">
           ${g.playStore ? `<a class="btn" href="${esc(g.playStore)}">Get it on Google Play</a>` : ''}
           ${g.demo ? `<a class="btn ghost" href="${esc(g.demo)}">Play in browser</a>` : ''}
         </div></div>
-    </article>`).join('');
+    </article>`;
+  // Optional "group": prio / other (local review only). Without groups: one plain list.
+  const groups = [['prio', 'Priority'], ['other', 'Other']];
+  document.getElementById('games').innerHTML = shown.some((g) => g.group)
+    ? groups.map(([k, label]) => { const list = shown.filter((g) => (g.group ?? 'other') === k); return list.length ? `<h3 class="grp">${label}</h3>${list.map(card).join('')}` : ''; }).join('')
+    : shown.map(card).join('');
 }).catch(() => {});
 </script>
 </body></html>

@@ -1,4 +1,4 @@
-// Unhide a finished game on tonobity.github.io:  node publish-game.mjs <block-jam|hex-fit|noodle-stall>
+// Run ONLY when the game is live on Google Play. Unhide it on tonobity.github.io:  node publish-game.mjs <block-jam|hex-fit|noodle-stall>
 // Builds the web demo from the sibling repo clone (../<id>), copies it to <id>/play/ plus the store icon,
 // and sets "visible": true in games.json. Then commit + push this repo.
 // Hide again:  node publish-game.mjs <id> --hide   (removes the demo files and sets visible false)
