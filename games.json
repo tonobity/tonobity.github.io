@@ -32,5 +32,16 @@
     "demo": "noodle-stall/play/",
     "visible": false,
     "onPlay": false
+  },
+  {
+    "id": "word-lock",
+    "title": "Word Lock",
+    "tagline": "Turn the wheels until every row is a word. Open the lock.",
+    "icon": "word-lock/icon.png",
+    "playStore": "https://play.google.com/store/apps/details?id=com.tonobity.wordlock",
+    "demo": "word-lock/play/",
+    "apk": "word-lock/WordLock-Demo.apk",
+    "onPlay": false,
+    "visible": false
   }
 ]
